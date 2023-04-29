@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://cwfriag4kcot"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_sv08u"]
+[ext_resource type="PackedScene" uid="uid://dy0axrfivfknl" path="res://components/HealthComponent.tscn" id="2_8diu1"]
+[ext_resource type="Texture2D" uid="uid://bwrm6msevi06m" path="res://assets/textures/thrust.svg" id="2_ata2x"]
+[ext_resource type="PackedScene" uid="uid://xo3w3js6jcj5" path="res://components/HurtBoxComponent.tscn" id="3_3w0vw"]
+[ext_resource type="Texture2D" uid="uid://5k3u0y8eeu2a" path="res://assets/textures/Cloth_02-128x128.png" id="3_jkfj0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_at0nv"]
+radius = 0.657
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ixifb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4ywy"]
+albedo_texture = ExtResource("3_jkfj0")
+uv1_triplanar = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hps6m"]
+material = SubResource("StandardMaterial3D_y4ywy")
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_mask = 6
+script = ExtResource("1_sv08u")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_8diu1")]
+max_hp = 10
+
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("3_3w0vw")]
+collision_mask = 6
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBoxComponent"]
+shape = SubResource("CapsuleShape3D_at0nv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ixifb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_hps6m")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.605641, 0.795738, 0, -0.795738, 0.605641, 0, 9.31659, 6.16656)
+
+[node name="TargetArrow" type="Sprite3D" parent="."]
+transform = Transform3D(0.255, 0, 0, 0, -1.11464e-08, -0.255, 0, 0.255, -1.11464e-08, 0, 1.73429, 0)
+texture = ExtResource("2_ata2x")

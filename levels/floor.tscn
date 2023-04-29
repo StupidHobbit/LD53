@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://0twl2oax654t"]
+
+[ext_resource type="Texture2D" uid="uid://64olui4qi6yd" path="res://assets/textures/Grass_02-128x128.png" id="1_bcedl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cpn7s"]
+albedo_texture = ExtResource("1_bcedl")
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_aim3y"]
+material = SubResource("StandardMaterial3D_cpn7s")
+size = Vector2(200, 200)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_x2ko2"]
+
+[node name="floor" type="StaticBody3D"]
+collision_layer = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_aim3y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("WorldBoundaryShape3D_x2ko2")

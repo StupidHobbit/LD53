@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://be1jdpsdpry73"]
+
+[ext_resource type="Script" path="res://components/DamageArea.gd" id="1_bhngf"]
+
+[node name="DamageArea" type="Area3D"]
+script = ExtResource("1_bhngf")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

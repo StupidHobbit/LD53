@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=3 uid="uid://niukbxll5c7"]
+
+[ext_resource type="PackedScene" uid="uid://0twl2oax654t" path="res://levels/floor.tscn" id="1_24f1p"]
+[ext_resource type="PackedScene" uid="uid://cwfriag4kcot" path="res://player.tscn" id="2_rdi6s"]
+[ext_resource type="PackedScene" uid="uid://boj15um26lvm7" path="res://target/target.tscn" id="3_dgg3c"]
+[ext_resource type="PackedScene" uid="uid://bkmobttgjsu2f" path="res://spawners/EnemySpawner.tscn" id="4_l56aj"]
+[ext_resource type="PackedScene" uid="uid://cbkbshdluwyff" path="res://enemies/Wolf.tscn" id="5_bdfjp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c4k0g"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_v1bnh"]
+sky_material = SubResource("ProceduralSkyMaterial_c4k0g")
+
+[sub_resource type="Environment" id="Environment_brb7e"]
+background_mode = 2
+sky = SubResource("Sky_v1bnh")
+tonemap_mode = 2
+
+[node name="test_level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_brb7e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="floor" parent="." instance=ExtResource("1_24f1p")]
+
+[node name="Player" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_rdi6s")]
+target = NodePath("../target")
+
+[node name="target" parent="." instance=ExtResource("3_dgg3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.841, 0.998969, 10.5536)
+
+[node name="EnemySpawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_l56aj")]
+enemy_scene = ExtResource("5_bdfjp")
+player = NodePath("../Player")
+cooldown = 2.0
