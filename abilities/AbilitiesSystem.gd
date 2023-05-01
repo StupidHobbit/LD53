@@ -1,7 +1,7 @@
 extends Node
 class_name AbilitiesSystem
 
-@export var abilities_panel: AbilityPanelData = AbilityPanelData.new()
+var abilities_panel: AbilityPanelData = AbilityPanelData.new()
 @export var statuses_component: StatusesComponent:
 	set(value):
 		statuses_component = value
@@ -17,6 +17,9 @@ var world: Node
 
 var rock_projectile = preload("res://projectiles/rock_projectile.tscn")
 var poison_cloud_projectile = preload("res://projectiles/poison_cloud_projectile.tscn")
+var fire_projectile = preload("res://projectiles/fire_projectile.tscn")
+var ice_projectile = preload("res://projectiles/ice_projectile.tscn")
+var spike_projectile = preload("res://projectiles/spike_projectile.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,10 +27,15 @@ func _ready():
 	world = player.get_parent()
 	player.tree_entered.connect(_on_level_change)
 	update_configuration_warnings()
+	
+			
+func init_abilities_panel(_abilities_panel: AbilityPanelData):
+	abilities_panel = _abilities_panel
 	for slot in abilities_panel.slot_datas:
 		abilities_index[slot.ability_data.slug] = slot.ability_data
-		for s in slot.ability_data.statuses:
-			statuses_component.add_status(s)
+		if slot.ability_data.passive:
+			for s in slot.ability_data.statuses:
+				statuses_component.add_status(s)
 
 func _on_level_change():
 	world = player.get_parent()
@@ -37,10 +45,10 @@ func add_ability(ability: AbilityData):
 	slot.ability_data = ability
 	abilities_panel.slot_datas.append(slot)
 	abilities_index[ability.slug] = ability
-	for s in ability.statuses:
-		statuses_component.add_status(s)
+	if ability.passive:
+		for s in ability.statuses:
+			statuses_component.add_status(s)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
 	update_cooldowns(delta)
 	_process_autocast()
@@ -91,14 +99,32 @@ func _autocast_implementation(ability_data: AbilityData) -> bool:
 		"poison_cloud":
 			var p = make_projectile(poison_cloud_projectile, ability_data, enemies_query.get_closest_enemy().position)
 			return true
+		"fireball":
+			var p = make_projectile(fire_projectile, ability_data, enemies_query.get_closest_enemy().position)
+			return true
+		"icicles":
+			for i in range(ability_data.projectile.amount):
+				var angle = randf_range(0, 2 * PI)
+				var p = make_projectile(ice_projectile, ability_data, player.position + Vector3(cos(angle), 0, sin(angle)))
+			return true
+		"spikes":
+			for i in range(ability_data.projectile.amount):
+				var angle = randf_range(0, 2 * PI)
+				var distance = randf_range(0.3, 4)
+				var position = player.position + Vector3(cos(angle), 0, sin(angle)) * distance
+				var p = make_projectile(spike_projectile, ability_data, position)
+				p.global_position = position
+				p.velocity = Vector3(0, ability_data.projectile.speed, 0)
+			return true
 		_:
-			push_error("Unknown ability", ability_data.slug)
+			push_error("Unknown ability ", ability_data.slug)
 	return false
 	
 func make_projectile(projectile_scene: PackedScene, ability: AbilityData, target_position: Vector3) -> Projectile:
 	var projectile = projectile_scene.instantiate()
 	projectile.data = ability.projectile
 	world.add_child(projectile)
+	projectile.statuses = ability.statuses
 	projectile.global_position = player.cast_point.global_position
 	projectile.velocity = Vector3(target_position.x - player.position.x, 0, target_position.z - player.position.z).normalized() * ability.projectile.speed
 	return projectile

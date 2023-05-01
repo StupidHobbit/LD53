@@ -9,6 +9,7 @@ signal destroyed()
 
 var lifetime: float = 0
 var velocity: Vector3
+var statuses: Array[Status]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

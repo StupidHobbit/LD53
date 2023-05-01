@@ -1,28 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://deym75avvntf0"]
+[gd_scene load_steps=7 format=3 uid="uid://bc2wf6gmty7d5"]
 
-[ext_resource type="PackedScene" uid="uid://dxj5npig0sf8t" path="res://projectiles/projectile.tscn" id="1_5n81p"]
-[ext_resource type="Material" uid="uid://cqf0o8ic06qo5" path="res://projectiles/fire_material.tres" id="2_bx6ne"]
+[ext_resource type="PackedScene" uid="uid://dxj5npig0sf8t" path="res://projectiles/projectile.tscn" id="1_51gnv"]
+[ext_resource type="Material" uid="uid://btahvkmdkwp8q" path="res://projectiles/ice_material.tres" id="2_ja0fu"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_3sov1"]
-material = ExtResource("2_bx6ne")
-radius = 0.2
-height = 0.4
+material = ExtResource("2_ja0fu")
+radius = 0.1
+height = 0.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ywe3w"]
-albedo_color = Color(0.94902, 0.164706, 0.156863, 1)
+albedo_color = Color(0.14902, 0.592157, 0.619608, 1)
 metallic = 0.61
 emission_enabled = true
-emission = Color(0.917647, 0, 0, 1)
+emission = Color(0.133333, 0.54902, 0.596078, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_28i6j"]
 material = SubResource("StandardMaterial3D_ywe3w")
-radius = 0.1
-height = 0.2
+radius = 0.05
+height = 0.1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ke7xq"]
 radius = 0.2
 
-[node name="fire_projectile" instance=ExtResource("1_5n81p")]
+[node name="fire_projectile" instance=ExtResource("1_51gnv")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0"]
 mesh = SubResource("SphereMesh_3sov1")

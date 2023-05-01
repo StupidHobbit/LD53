@@ -29,7 +29,8 @@ func start_game():
 func restart_game():
 	current_level.get_tree().paused = false
 	current_level.queue_free()
-	current_level_number += 1
+	current_level_number = 1
+	player.init_abilities()
 	start_game()
 
 func finish_level():

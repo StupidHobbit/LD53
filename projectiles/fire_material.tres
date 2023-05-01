@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cqf0o8ic06qo5"]
+
+[ext_resource type="Shader" path="res://projectiles/fire_projectile.gdshader" id="1_4j42o"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8nhvr"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1fooj"]
+noise = SubResource("FastNoiseLite_8nhvr")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_4j42o")
+shader_parameter/root_color = Color(1, 0.75, 0.3, 1)
+shader_parameter/tip_color = Color(1, 0.03, 0.001, 1)
+shader_parameter/specular_color = Color(0.811765, 0.243137, 0, 1)
+shader_parameter/fire_alpha = 1.0
+shader_parameter/fire_speed = Vector2(0.511, 1)
+shader_parameter/fire_aperture = 0.22
+shader_parameter/wave_noise_speed = Vector2(0.42, 0.23)
+shader_parameter/wave_noise_scale = 0.1
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_1fooj")

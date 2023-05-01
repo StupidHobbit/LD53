@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://niukbxll5c7"]
+[gd_scene load_steps=10 format=3 uid="uid://niukbxll5c7"]
 
 [ext_resource type="PackedScene" uid="uid://0twl2oax654t" path="res://levels/floor.tscn" id="1_24f1p"]
 [ext_resource type="PackedScene" uid="uid://do1w6f3nrwlaq" path="res://player.tscn" id="2_rdi6s"]
+[ext_resource type="PackedScene" uid="uid://dx5wgfcbxelfr" path="res://components/StatusesComponent.tscn" id="3_6n05i"]
 [ext_resource type="PackedScene" uid="uid://boj15um26lvm7" path="res://target/target.tscn" id="3_dgg3c"]
 [ext_resource type="PackedScene" uid="uid://bkmobttgjsu2f" path="res://spawners/EnemySpawner.tscn" id="4_l56aj"]
-[ext_resource type="PackedScene" uid="uid://cbkbshdluwyff" path="res://enemies/Wolf.tscn" id="5_bdfjp"]
+[ext_resource type="PackedScene" uid="uid://dl6hkgcm4rjxo" path="res://enemies/regular_wolf.tscn" id="5_t8o8v"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c4k0g"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -24,18 +25,21 @@ tonemap_mode = 2
 environment = SubResource("Environment_brb7e")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 11.9199, 0)
 shadow_enabled = true
 
 [node name="floor" parent="." instance=ExtResource("1_24f1p")]
 
 [node name="Player" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_rdi6s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.78816, 0.0182536, 2.13459)
 target = NodePath("../target")
+
+[node name="StatusesComponent2" parent="Player" instance=ExtResource("3_6n05i")]
 
 [node name="target" parent="." instance=ExtResource("3_dgg3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.841, 0.998969, 10.5536)
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_l56aj")]
-enemy_scene = ExtResource("5_bdfjp")
+enemy_scene = ExtResource("5_t8o8v")
 player = NodePath("../Player")
 cooldown = 2.0

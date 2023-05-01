@@ -15,7 +15,7 @@ script = ExtResource("1_pcv3k")
 collision_layer = 2
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_g08fv")]
-max_hp = 10
+max_hp = 10.0
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("3_erby0")]
 collision_layer = 2

@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=8 format=3 uid="uid://bh66eo8a4tv55"]
+
+[ext_resource type="Script" path="res://abilities/projectile_data.gd" id="1_42vc4"]
+[ext_resource type="Script" path="res://abilities/ability_data.gd" id="1_m0s25"]
+[ext_resource type="Script" path="res://statuses/status.gd" id="3_gew4k"]
+[ext_resource type="Texture2D" uid="uid://tit3pjx4n53c" path="res://assets/icons/ice-bolt.svg" id="3_xh7n8"]
+
+[sub_resource type="Resource" id="Resource_xow6i"]
+script = ExtResource("1_42vc4")
+damage = 1.0
+speed = 30.0
+amount = 10
+
+[sub_resource type="Resource" id="Resource_bjdat"]
+script = ExtResource("3_gew4k")
+type = 0
+value = 0.75
+
+[sub_resource type="Resource" id="Resource_qt3vb"]
+script = ExtResource("3_gew4k")
+type = 3
+value = 0.0
+
+[resource]
+script = ExtResource("1_m0s25")
+slug = "icicles"
+name = "Icicles"
+description = "Red throws small icicles to random directions around herself, slowing down and dealing small amount of damage"
+texture = ExtResource("3_xh7n8")
+projectile = SubResource("Resource_xow6i")
+cooldown = 6.0
+range = 10.0
+autocast = true
+passive = false
+statuses = Array[ExtResource("3_gew4k")]([SubResource("Resource_bjdat"), SubResource("Resource_qt3vb")])

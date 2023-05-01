@@ -2,6 +2,8 @@ extends Area3D
 
 
 @export var health: HealthComponent
+@export var statuses: StatusesComponent
+
 
 var parent 
 
@@ -13,6 +15,9 @@ func _process_collision(o: Node3D):
 	if o is Projectile:
 		var projectile_stats: ProjectileData = o.get_stats() 
 		health.take_damage(projectile_stats.damage)
+		if statuses != null:
+			for s in o.statuses:
+				statuses.add_status(s)
 
 func _process(delta):
 	for o in get_overlapping_areas():

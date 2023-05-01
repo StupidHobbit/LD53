@@ -5,15 +5,16 @@ class_name Player
 @export var speed := 4.0
 @export var target: Target
 @export var dash_distance: float = 10
+@export var abilities_panel: AbilityPanelData = AbilityPanelData.new()
 
 @onready var target_arrow = $TargetArrow
-
+@onready var red_hood = $RedHood
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var abilities_system = $AbilitiesSystem
 @onready var statuses_component: StatusesComponent = $StatusesComponent
 @onready var hurt_box_component = $HurtBoxComponent
 @onready var health_bar = $HealthBar
-@onready var cast_point = $CastPoint
+@onready var cast_point = $RedHood/CastPoint
 @onready var power_up_popup: PowerUpPopup = $PowerUpPopup
 @onready var animation_player = $RedHood/AnimationPlayer
 
@@ -28,6 +29,14 @@ func _ready():
 	health_bar.max_value = health_component.max_hp
 	health_bar.value = health_component.max_hp
 	target_arrow_original_position = target_arrow.position
+	init_abilities()
+	
+
+func init_abilities():
+	var _abilities_panel: AbilityPanelData = AbilityPanelData.new()
+	_abilities_panel.slot_datas = abilities_panel.slot_datas.duplicate()
+	abilities_system.init_abilities_panel(_abilities_panel)
+
 
 func _physics_process(delta: float) -> void:
 	var current_speed = speed * statuses_component.get_speed()
@@ -43,7 +52,7 @@ func _physics_process(delta: float) -> void:
 		has_dash_boost = false
 		position += dash_distance * Vector3(last_input.x, 0, last_input.y)
 	
-	rotation.y = atan2(last_input.x, last_input.y)
+	red_hood.rotation.y = atan2(last_input.x, last_input.y)
 	velocity = Vector3(input.x, 0, input.y) * current_speed
 	move_and_slide()
 
@@ -56,7 +65,7 @@ func update_target():
 	var target_position = target.position
 	var angle = atan2(position.x - target_position.x, target_position.z - position.z)
 	target_arrow.rotation.z = angle
-	target_arrow.position = target_arrow_original_position + position
+	#target_arrow.position = target_arrow_original_position + position
 
 func _on_damage(damage: int):
 	health_bar.value = health_component.current_hp

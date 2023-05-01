@@ -18,6 +18,14 @@
 [ext_resource type="PackedScene" uid="uid://edt6dwxglpvw" path="res://utils/SmartCamera.tscn" id="15_8cq7j"]
 [ext_resource type="Resource" uid="uid://c5xytn46cwadi" path="res://abilities/data/poison_cloud.tres" id="16_e3huv"]
 
+[sub_resource type="Resource" id="Resource_i6hlp"]
+script = ExtResource("12_htim2")
+ability_data = ExtResource("13_8ljov")
+
+[sub_resource type="Resource" id="Resource_5ti5g"]
+script = ExtResource("9_ebmrm")
+slot_datas = Array[ExtResource("12_htim2")]([SubResource("Resource_i6hlp")])
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_at0nv"]
 radius = 0.131
 height = 0.683
@@ -26,23 +34,19 @@ height = 0.683
 radius = 0.127
 height = 0.722
 
-[sub_resource type="Resource" id="Resource_pule3"]
-script = ExtResource("12_htim2")
-ability_data = ExtResource("13_8ljov")
-
-[sub_resource type="Resource" id="Resource_n3gqt"]
-script = ExtResource("9_ebmrm")
-slot_datas = Array[ExtResource("12_htim2")]([SubResource("Resource_pule3")])
-
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0182536, 0)
-collision_mask = 6
+collision_mask = 7
 script = ExtResource("1_sv08u")
+abilities_panel = SubResource("Resource_5ti5g")
 
 [node name="RedHood" parent="." instance=ExtResource("2_w2txg")]
 
+[node name="CastPoint" type="Marker3D" parent="RedHood"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.463124, 0.177435)
+
 [node name="HealthComponent" parent="." instance=ExtResource("2_8diu1")]
-max_hp = 10
+max_hp = 10.0
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("3_3w0vw")]
 collision_mask = 6
@@ -58,25 +62,22 @@ shape = SubResource("CapsuleShape3D_ixifb")
 
 [node name="TargetArrow" type="Sprite3D" parent="."]
 transform = Transform3D(0.082, 0, 0, 0, -3.58433e-09, -0.082, 0, 0.082, -3.58433e-09, 0, 0.801326, 0.0414003)
-top_level = true
 texture = ExtResource("5_8vavh")
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
 offset_right = 266.0
 offset_bottom = 45.0
+step = 0.1
 value = 99.0
 texture_over = ExtResource("7_i6iiw")
 texture_progress = ExtResource("8_ln5pg")
 texture_progress_offset = Vector2(5.785, 4.515)
 
-[node name="StatusesComponent" parent="." instance=ExtResource("10_x5k6c")]
+[node name="StatusesComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("10_x5k6c")]
+health = NodePath("../HealthComponent")
 
 [node name="AbilitiesSystem" parent="." node_paths=PackedStringArray("statuses_component") instance=ExtResource("8_jkejk")]
-abilities_panel = SubResource("Resource_n3gqt")
 statuses_component = NodePath("../StatusesComponent")
-
-[node name="CastPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.463124, 0)
 
 [node name="SmartCamera" parent="." instance=ExtResource("15_8cq7j")]
 transform = Transform3D(1, 0, 0, 0, 0.264462, 0.964396, 0, -0.964396, 0.264462, 0, 3.26208, 0.913267)

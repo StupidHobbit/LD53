@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=5 format=3 uid="uid://bpdeb6rnnpy7f"]
+
+[ext_resource type="Script" path="res://abilities/ability_data.gd" id="1_5hq0d"]
+[ext_resource type="Script" path="res://abilities/projectile_data.gd" id="1_shh8i"]
+[ext_resource type="Texture2D" uid="uid://cqr4ewkwwex3r" path="res://assets/icons/spikes-full.svg" id="3_grgai"]
+
+[sub_resource type="Resource" id="Resource_b0qn1"]
+script = ExtResource("1_shh8i")
+damage = 5.0
+speed = 0.5
+amount = 50
+
+[resource]
+script = ExtResource("1_5hq0d")
+slug = "spikes"
+name = "Spikes"
+description = "Red summons rocky spikes around, damaging enemies in a huge area"
+texture = ExtResource("3_grgai")
+projectile = SubResource("Resource_b0qn1")
+cooldown = 7.0
+range = 10.0
+autocast = true
+passive = false
+statuses = Array[Resource("res://statuses/status.gd")]([])
