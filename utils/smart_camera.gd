@@ -4,14 +4,23 @@ extends Camera3D
 
 var player: Player
 var original_position: Vector3
+var original_rotation: Vector3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_parent()
 	original_position = position
+	original_rotation = rotation
+	player.tree_entered.connect(_on_player_reparent)
+
+
+func _on_player_reparent():
+	rotation = original_rotation 
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
+	rotation = original_rotation 
 	var target_position = original_position
 	target_position.x += player.position.x
 	target_position.z += player.position.z

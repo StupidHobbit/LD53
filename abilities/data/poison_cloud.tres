@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_mmf75"]
 script = ExtResource("1_msbi4")
 damage = 2
-speed = 3.0
+speed = 1.0
 
 [resource]
 script = ExtResource("1_js2yd")
@@ -17,7 +17,7 @@ description = "TODO"
 texture = ExtResource("2_yex7j")
 projectile = SubResource("Resource_mmf75")
 cooldown = 10.0
-range = 10.0
+range = 3.0
 autocast = true
 passive = false
 statuses = Array[Resource("res://statuses/status.gd")]([])

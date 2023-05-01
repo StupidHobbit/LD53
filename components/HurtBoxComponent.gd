@@ -21,3 +21,4 @@ func _process(delta):
 				return
 			health.take_damage(o.damage)
 			o.damage_target(self)
+

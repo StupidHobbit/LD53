@@ -57,7 +57,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.329187, 0)
 shape = SubResource("CapsuleShape3D_ixifb")
 
 [node name="TargetArrow" type="Sprite3D" parent="."]
-transform = Transform3D(0.255, 0, 0, 0, -1.11464e-08, -0.255, 0, 0.255, -1.11464e-08, 0, 1.73429, 0)
+transform = Transform3D(0.082, 0, 0, 0, -3.58433e-09, -0.082, 0, 0.082, -3.58433e-09, 0, 0.801326, 0.0414003)
+top_level = true
 texture = ExtResource("5_8vavh")
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
@@ -78,7 +79,7 @@ statuses_component = NodePath("../StatusesComponent")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.463124, 0)
 
 [node name="SmartCamera" parent="." instance=ExtResource("15_8cq7j")]
-transform = Transform3D(1, 0, 0, 0, 0.350207, 0.936672, 0, -0.936672, 0.350207, 0, 5.37305, 2.51955)
+transform = Transform3D(1, 0, 0, 0, 0.264462, 0.964396, 0, -0.964396, 0.264462, 0, 3.26208, 0.913267)
 
 [node name="PowerUpPopup" parent="." instance=ExtResource("14_ywxro")]
 all_powerups = Array[Resource("res://abilities/ability_data.gd")]([ExtResource("13_8ljov"), ExtResource("11_607q3"), ExtResource("16_e3huv"), ExtResource("14_oev8n")])

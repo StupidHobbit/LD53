@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dl6hkgcm4rjxo"]
+
+[ext_resource type="PackedScene" uid="uid://cbkbshdluwyff" path="res://enemies/Wolf.tscn" id="1_50b6l"]
+[ext_resource type="PackedScene" uid="uid://dnxhiva6et2xu" path="res://assets/Wolves/Small_wolf.glb" id="2_rao6o"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yfg0i"]
+radius = 0.3
+height = 1.169
+
+[node name="Wolf" instance=ExtResource("1_50b6l")]
+
+[node name="model" parent="." index="0" instance=ExtResource("2_rao6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.331967, 0.0880193, -3.74746)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="DamageArea" index="1"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.179971, 0.300325, 0)
+shape = SubResource("CapsuleShape3D_yfg0i")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="HurtBoxComponent" index="0"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.179971, 0.300325, 0)
+shape = SubResource("CapsuleShape3D_yfg0i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.179971, 0.300325, 0)
+shape = SubResource("CapsuleShape3D_yfg0i")

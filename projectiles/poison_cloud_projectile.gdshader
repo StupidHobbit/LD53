@@ -2,6 +2,9 @@ shader_type spatial;
 
 const int MAX_OCTAVE = 8;
 
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
+
+
 float cosineInterpolate(float a, float b, float x) {
 	float ft = x * PI;
 	float f = (1.0 - cos(ft)) * 0.5;
@@ -69,6 +72,5 @@ void fragment() {
     float green =  c*(0.95);
    
     vec3 heat = vec3(red,green,0.133);
-    ALBEDO = heat;
-	ALPHA = (red + green) / 2.;
+    ALBEDO = heat + texture(SCREEN_TEXTURE, uv).xyz;
 }

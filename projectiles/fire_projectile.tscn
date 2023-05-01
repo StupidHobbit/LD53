@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://deym75avvntf0"]
+
+[ext_resource type="PackedScene" uid="uid://dxj5npig0sf8t" path="res://projectiles/projectile.tscn" id="1_5n81p"]
+[ext_resource type="Shader" path="res://projectiles/fire_projectile.gdshader" id="2_vuht1"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8nhvr"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1fooj"]
+noise = SubResource("FastNoiseLite_8nhvr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_is4w4"]
+render_priority = 0
+shader = ExtResource("2_vuht1")
+shader_parameter/root_color = Color(1, 0.75, 0.3, 1)
+shader_parameter/tip_color = Color(1, 0.03, 0.001, 1)
+shader_parameter/specular_color = Color(0.811765, 0.243137, 0, 1)
+shader_parameter/fire_alpha = 1.0
+shader_parameter/fire_speed = Vector2(0.511, 1)
+shader_parameter/fire_aperture = 0.22
+shader_parameter/wave_noise_speed = Vector2(0.42, 0.23)
+shader_parameter/wave_noise_scale = 0.1
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_1fooj")
+
+[sub_resource type="SphereMesh" id="SphereMesh_3sov1"]
+material = SubResource("ShaderMaterial_is4w4")
+radius = 0.2
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ywe3w"]
+albedo_color = Color(0.94902, 0.164706, 0.156863, 1)
+metallic = 0.61
+emission_enabled = true
+emission = Color(0.917647, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_28i6j"]
+material = SubResource("StandardMaterial3D_ywe3w")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ke7xq"]
+radius = 0.2
+
+[node name="fire_projectile" instance=ExtResource("1_5n81p")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0"]
+mesh = SubResource("SphereMesh_3sov1")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_28i6j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+shape = SubResource("SphereShape3D_ke7xq")

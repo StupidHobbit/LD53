@@ -4,7 +4,7 @@ extends Node
 @onready var spawner_scene = preload("res://spawners/EnemySpawner.tscn")
 @onready var target_scene = preload("res://target/target.tscn")
 @onready var empty_level_scene = preload("res://levels/empty_level.tscn")
-@onready var wolf_scene = preload("res://enemies/Wolf.tscn")
+@onready var wolf_scene = preload("res://enemies/regular_wolf.tscn")
 
 var player: Player
 var current_level: Node3D

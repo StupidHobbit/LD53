@@ -1,23 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbkbshdluwyff"]
+[gd_scene load_steps=5 format=3 uid="uid://cbkbshdluwyff"]
 
 [ext_resource type="PackedScene" uid="uid://be1jdpsdpry73" path="res://components/DamageArea.tscn" id="1_djlqp"]
 [ext_resource type="Script" path="res://enemies/Wolf.gd" id="1_pcv3k"]
 [ext_resource type="PackedScene" uid="uid://dy0axrfivfknl" path="res://components/HealthComponent.tscn" id="2_g08fv"]
 [ext_resource type="PackedScene" uid="uid://xo3w3js6jcj5" path="res://components/HurtBoxComponent.tscn" id="3_erby0"]
-[ext_resource type="Texture2D" uid="uid://bsjkxob3h43xl" path="res://assets/textures/Animal_13-128x128.png" id="4_sw4p7"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_47cvy"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u4kma"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nfre3"]
-albedo_texture = ExtResource("4_sw4p7")
-uv1_triplanar = true
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_vj1tj"]
-material = SubResource("StandardMaterial3D_nfre3")
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_udufs"]
 
 [node name="Wolf" type="CharacterBody3D" groups=["enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.560475, 0)
@@ -28,10 +14,6 @@ script = ExtResource("1_pcv3k")
 [node name="DamageArea" parent="." instance=ExtResource("1_djlqp")]
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_47cvy")
-
 [node name="HealthComponent" parent="." instance=ExtResource("2_g08fv")]
 max_hp = 10
 
@@ -39,15 +21,3 @@ max_hp = 10
 collision_layer = 2
 collision_mask = 8
 health = NodePath("../HealthComponent")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBoxComponent"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_u4kma")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.0111524, -0.999938, 0, 0.999938, -0.0111524, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_vj1tj")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_udufs")

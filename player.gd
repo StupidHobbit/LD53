@@ -18,6 +18,8 @@ class_name Player
 @onready var animation_player = $RedHood/AnimationPlayer
 
 var has_dash_boost: bool = false
+var last_input: Vector2
+var target_arrow_original_position: Vector3
 
 func _ready():
 	health_component.health_depleted.connect(_on_health_depleted)
@@ -25,20 +27,23 @@ func _ready():
 	hurt_box_component.area_entered.connect(_on_hurtbox_area_entered)
 	health_bar.max_value = health_component.max_hp
 	health_bar.value = health_component.max_hp
+	target_arrow_original_position = target_arrow.position
 
 func _physics_process(delta: float) -> void:
 	var current_speed = speed * statuses_component.get_speed()
 	var input := Input.get_vector("left", "right", "up", "down").normalized()
 
 	if input:
+		last_input = input
 		animation_player.play("Running")
 	else:
 		animation_player.play("Idle")
 
 	if has_dash_boost:
 		has_dash_boost = false
-		position += dash_distance * Vector3(input.x, 0, input.y)
+		position += dash_distance * Vector3(last_input.x, 0, last_input.y)
 	
+	rotation.y = atan2(last_input.x, last_input.y)
 	velocity = Vector3(input.x, 0, input.y) * current_speed
 	move_and_slide()
 
@@ -51,6 +56,7 @@ func update_target():
 	var target_position = target.position
 	var angle = atan2(position.x - target_position.x, target_position.z - position.z)
 	target_arrow.rotation.z = angle
+	target_arrow.position = target_arrow_original_position + position
 
 func _on_damage(damage: int):
 	health_bar.value = health_component.current_hp
