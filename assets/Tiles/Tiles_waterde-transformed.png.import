@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca17icab3jb8s"
+uid="uid://bb1dx4ckwp4oa"
 path.s3tc="res://.godot/imported/Tiles_waterde-transformed.png-43f0f1e730c4257d94ea4b83f4019ab1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
@@ -26,7 +26,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://assets/Tiles/Tiles_waterde-transformed.png"
+roughness/src_normal="res://assets/Tiles_waterde-transformed.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ttyn4dc70wdv"
+uid="uid://cnb3gym5jdv8h"
 path.s3tc="res://.godot/imported/Tiles_Stylized_Bark_001_NORM.png-7b0638bb5b16376580827caa56df8a43.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
@@ -26,7 +26,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://assets/Tiles/Tiles_Stylized_Bark_001_NORM.png"
+roughness/src_normal="res://assets/Tiles_Stylized_Bark_001_NORM.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
