@@ -15,6 +15,7 @@ class_name Player
 @onready var health_bar = $HealthBar
 @onready var cast_point = $CastPoint
 @onready var power_up_popup: PowerUpPopup = $PowerUpPopup
+@onready var animation_player = $RedHood/AnimationPlayer
 
 var has_dash_boost: bool = false
 
@@ -27,9 +28,13 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	var current_speed = speed * statuses_component.get_speed()
-	print(current_speed)
 	var input := Input.get_vector("left", "right", "up", "down").normalized()
-	
+
+	if input:
+		animation_player.play("Running")
+	else:
+		animation_player.play("Idle")
+
 	if has_dash_boost:
 		has_dash_boost = false
 		position += dash_distance * Vector3(input.x, 0, input.y)
