@@ -10,6 +10,7 @@ var player: Player
 var current_level: Node3D
 var main: Node
 var current_level_number: int = 1
+var game_is_active: bool = false
 
 func _ready():
 	pass
@@ -23,12 +24,29 @@ func start_game():
 	player = player_scene.instantiate()
 	current_level = _create_level()
 	current_level.add_child(player)
+	game_is_active = true
+
+func restart_game():
+	current_level.get_tree().paused = false
+	current_level.queue_free()
+	current_level_number += 1
+	start_game()
 
 func finish_level():
 	var old_level = current_level
 	current_level = _create_level()
 	player.reparent(current_level)
 	old_level.queue_free()
+	
+	
+func pause_game():
+	current_level.get_tree().paused = true
+	game_is_active = false
+	
+	
+func continue_game():
+	current_level.get_tree().paused = false
+	game_is_active = true
 	
 	
 func _create_level():

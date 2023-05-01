@@ -2,11 +2,14 @@ extends CharacterBody3D
 
 @export var speed: float = 4 
 
+@onready var health_component: HealthComponent = $HealthComponent
+
 var player: Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	health_component.health_depleted.connect(_on_health_depleted)
+	health_component.took_damage.connect(_on_took_damage)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,3 +22,9 @@ func _process(delta):
 
 func _physics_process(delta):
 	move_and_slide()
+
+func _on_health_depleted():
+	queue_free()
+
+func _on_took_damage(damage: int):
+	print(damage)

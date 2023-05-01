@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://ck5dpuahc4wg3"]
+
+[ext_resource type="Script" path="res://abilities/AbilitiesSystem.gd" id="1_sskw7"]
+[ext_resource type="PackedScene" uid="uid://df3o4x1dkx6lh" path="res://abilities/ability_panel.tscn" id="2_2yoqh"]
+[ext_resource type="Script" path="res://abilities/panel/panel_data.gd" id="2_mmevm"]
+
+[sub_resource type="Resource" id="Resource_r06l8"]
+script = ExtResource("2_mmevm")
+slot_datas = Array[Resource("res://abilities/panel/slot_data.gd")]([])
+
+[node name="AbilitiesSystem" type="Node"]
+script = ExtResource("1_sskw7")
+abilities_panel = SubResource("Resource_r06l8")
+
+[node name="AbilityPanel" parent="." instance=ExtResource("2_2yoqh")]
+offset_left = 3.0
+offset_top = 34.0
+offset_right = 43.0
+offset_bottom = 74.0

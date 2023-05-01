@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=3 format=3 uid="uid://kj2wf44mewir"]
+
+[ext_resource type="Script" path="res://abilities/ability_data.gd" id="1_asb0k"]
+[ext_resource type="Texture2D" uid="uid://7dicnd02xdi" path="res://assets/icons/sprint.svg" id="2_6miem"]
+
+[resource]
+script = ExtResource("1_asb0k")
+slug = "dash"
+name = "Dash"
+description = "TODO"
+texture = ExtResource("2_6miem")
+cooldown = 1.0
+range = 10.0
+autocast = false
+passive = false
+statuses = Array[Resource("res://statuses/status.gd")]([])

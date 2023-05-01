@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://c10v0m2sut4t1"]
+
+[ext_resource type="PackedScene" uid="uid://k7h7nf5t2058" path="res://projectiles/area_projectile.tscn" id="1_eb0jg"]
+[ext_resource type="Shader" path="res://projectiles/poison_cloud_projectile.gdshader" id="2_w87ys"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qhic3"]
+size = Vector3(2, 0.468, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_go0pe"]
+render_priority = 0
+shader = ExtResource("2_w87ys")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4hel6"]
+material = SubResource("ShaderMaterial_go0pe")
+top_radius = 0.043
+bottom_radius = 1.0
+height = 0.636
+cap_bottom = false
+
+[node name="poison_cloud_projectile" instance=ExtResource("1_eb0jg")]
+collision_layer = 1
+collision_mask = 1
+max_lifetime = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_qhic3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("CylinderMesh_4hel6")

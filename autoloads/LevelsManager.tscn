@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://autoloads/LevelsManager.gd" id="1_jms0v"]
 
 [node name="LevelsManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_jms0v")

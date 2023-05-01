@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=5 format=3 uid="uid://b6lsvh5egn8ur"]
+
+[ext_resource type="Script" path="res://abilities/ability_data.gd" id="1_5jqxr"]
+[ext_resource type="Script" path="res://statuses/status.gd" id="2_jjayt"]
+[ext_resource type="Texture2D" uid="uid://n6488lxnijpi" path="res://assets/icons/wingfoot.svg" id="2_r64q7"]
+
+[sub_resource type="Resource" id="Resource_j607o"]
+script = ExtResource("2_jjayt")
+type = 0
+value = 1.5
+
+[resource]
+script = ExtResource("1_5jqxr")
+slug = "speed"
+name = "Speed"
+description = "TODO"
+texture = ExtResource("2_r64q7")
+cooldown = 1.0
+range = 10.0
+autocast = false
+passive = true
+statuses = Array[ExtResource("2_jjayt")]([SubResource("Resource_j607o")])

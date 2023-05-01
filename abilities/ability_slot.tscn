@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgauhe1e021rp"]
+
+[ext_resource type="Script" path="res://abilities/ability_slot.gd" id="1_l6j2t"]
+[ext_resource type="Texture2D" uid="uid://bxe2v3atxmf66" path="res://assets/icons/poison-gas.svg" id="2_47kyx"]
+[ext_resource type="Texture2D" uid="uid://c6wjjlostvuqi" path="res://assets/textures/transparent.png" id="3_byslr"]
+
+[node name="AbilitySlot" type="PanelContainer"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_l6j2t")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_47kyx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="IndexLabel" type="Label" parent="."]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "1"
+
+[node name="CooldownProgress" type="TextureProgressBar" parent="."]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+fill_mode = 5
+texture_progress = ExtResource("3_byslr")
