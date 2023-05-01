@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://edt6dwxglpvw"]
+
+[ext_resource type="Script" path="res://utils/smart_camera.gd" id="1_66myr"]
+
+[node name="SmartCamera" type="Camera3D"]
+top_level = true
+script = ExtResource("1_66myr")

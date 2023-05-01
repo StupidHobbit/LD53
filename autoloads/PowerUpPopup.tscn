@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2k0wks07mpho"]
+
+[ext_resource type="Script" path="res://autoloads/PowerUpPopup.gd" id="1_ixsi1"]
+[ext_resource type="PackedScene" uid="uid://jeqbb6g4vg4l" path="res://autoloads/power_up_slot.tscn" id="2_5mjlo"]
+
+[node name="PowerUpPopup" type="PanelContainer"]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ixsi1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="AbilityContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="AbilitySlot" parent="MarginContainer/AbilityContainer" instance=ExtResource("2_5mjlo")]
+layout_mode = 2

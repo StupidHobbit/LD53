@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://niukbxll5c7"]
 
 [ext_resource type="PackedScene" uid="uid://0twl2oax654t" path="res://levels/floor.tscn" id="1_24f1p"]
-[ext_resource type="PackedScene" uid="uid://cwfriag4kcot" path="res://player.tscn" id="2_rdi6s"]
+[ext_resource type="PackedScene" uid="uid://do1w6f3nrwlaq" path="res://player.tscn" id="2_rdi6s"]
 [ext_resource type="PackedScene" uid="uid://boj15um26lvm7" path="res://target/target.tscn" id="3_dgg3c"]
 [ext_resource type="PackedScene" uid="uid://bkmobttgjsu2f" path="res://spawners/EnemySpawner.tscn" id="4_l56aj"]
 [ext_resource type="PackedScene" uid="uid://cbkbshdluwyff" path="res://enemies/Wolf.tscn" id="5_bdfjp"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://k7h7nf5t2058"]
+
+[ext_resource type="PackedScene" uid="uid://dxj5npig0sf8t" path="res://projectiles/projectile.tscn" id="1_ftg5m"]
+[ext_resource type="Script" path="res://projectiles/area_projectile.gd" id="2_m2ptc"]
+[ext_resource type="Script" path="res://components/DamageArea.gd" id="3_oeeeq"]
+
+[node name="area_projectile" instance=ExtResource("1_ftg5m")]
+script = ExtResource("2_m2ptc")
+
+[node name="DamageArea" type="Area3D" parent="." index="0"]
+script = ExtResource("3_oeeeq")

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=5 format=3 uid="uid://c5xytn46cwadi"]
+
+[ext_resource type="Script" path="res://abilities/ability_data.gd" id="1_js2yd"]
+[ext_resource type="Script" path="res://abilities/projectile_data.gd" id="1_msbi4"]
+[ext_resource type="Texture2D" uid="uid://bxe2v3atxmf66" path="res://assets/icons/poison-gas.svg" id="2_yex7j"]
+
+[sub_resource type="Resource" id="Resource_mmf75"]
+script = ExtResource("1_msbi4")
+damage = 2
+speed = 3.0
+
+[resource]
+script = ExtResource("1_js2yd")
+slug = "poison_cloud"
+name = "Posion cloud"
+description = "TODO"
+texture = ExtResource("2_yex7j")
+projectile = SubResource("Resource_mmf75")
+cooldown = 10.0
+range = 10.0
+autocast = true
+passive = false
+statuses = Array[Resource("res://statuses/status.gd")]([])

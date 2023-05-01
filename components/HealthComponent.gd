@@ -12,6 +12,8 @@ func _ready():
 	current_hp = max_hp
 
 func take_damage(damage: int):
+	if current_hp == 0:
+		return
 	current_hp = clampi(current_hp - damage, 0, max_hp)
 	took_damage.emit(damage)
 	if current_hp == 0:

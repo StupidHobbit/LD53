@@ -1,27 +1,45 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwfriag4kcot"]
+[gd_scene load_steps=22 format=3 uid="uid://do1w6f3nrwlaq"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_sv08u"]
 [ext_resource type="PackedScene" uid="uid://dy0axrfivfknl" path="res://components/HealthComponent.tscn" id="2_8diu1"]
-[ext_resource type="Texture2D" uid="uid://bwrm6msevi06m" path="res://assets/textures/thrust.svg" id="2_ata2x"]
+[ext_resource type="PackedScene" uid="uid://b48y3uaqxeea6" path="res://assets/MainCharacter/RedHood.glb" id="2_w2txg"]
 [ext_resource type="PackedScene" uid="uid://xo3w3js6jcj5" path="res://components/HurtBoxComponent.tscn" id="3_3w0vw"]
-[ext_resource type="Texture2D" uid="uid://5k3u0y8eeu2a" path="res://assets/textures/Cloth_02-128x128.png" id="3_jkfj0"]
+[ext_resource type="Texture2D" uid="uid://bwrm6msevi06m" path="res://assets/icons/thrust.svg" id="5_8vavh"]
+[ext_resource type="Texture2D" uid="uid://cbu1dkbdcoohe" path="res://assets/textures/BarV5_ProgressBarBorder.png" id="7_i6iiw"]
+[ext_resource type="PackedScene" uid="uid://ck5dpuahc4wg3" path="res://abilities/AbilitiesSystem.tscn" id="8_jkejk"]
+[ext_resource type="Texture2D" uid="uid://djb2vyas5bck2" path="res://assets/textures/BarV5_ProgressBar.png" id="8_ln5pg"]
+[ext_resource type="Script" path="res://abilities/panel/panel_data.gd" id="9_ebmrm"]
+[ext_resource type="PackedScene" uid="uid://dx5wgfcbxelfr" path="res://components/StatusesComponent.tscn" id="10_x5k6c"]
+[ext_resource type="Resource" uid="uid://b6lsvh5egn8ur" path="res://abilities/data/speed.tres" id="11_607q3"]
+[ext_resource type="Script" path="res://abilities/panel/slot_data.gd" id="12_htim2"]
+[ext_resource type="Resource" uid="uid://c2e1liv3ewert" path="res://abilities/data/rock.tres" id="13_8ljov"]
+[ext_resource type="Resource" uid="uid://kj2wf44mewir" path="res://abilities/data/dash.tres" id="14_oev8n"]
+[ext_resource type="PackedScene" uid="uid://d2k0wks07mpho" path="res://autoloads/PowerUpPopup.tscn" id="14_ywxro"]
+[ext_resource type="PackedScene" uid="uid://edt6dwxglpvw" path="res://utils/SmartCamera.tscn" id="15_8cq7j"]
+[ext_resource type="Resource" uid="uid://c5xytn46cwadi" path="res://abilities/data/poison_cloud.tres" id="16_e3huv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_at0nv"]
-radius = 0.657
+radius = 0.131
+height = 0.683
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ixifb"]
+radius = 0.127
+height = 0.722
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4ywy"]
-albedo_texture = ExtResource("3_jkfj0")
-uv1_triplanar = true
+[sub_resource type="Resource" id="Resource_pule3"]
+script = ExtResource("12_htim2")
+ability_data = ExtResource("13_8ljov")
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_hps6m"]
-material = SubResource("StandardMaterial3D_y4ywy")
+[sub_resource type="Resource" id="Resource_n3gqt"]
+script = ExtResource("9_ebmrm")
+slot_datas = Array[ExtResource("12_htim2")]([SubResource("Resource_pule3")])
 
 [node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0182536, 0)
 collision_mask = 6
 script = ExtResource("1_sv08u")
+
+[node name="RedHood" parent="." instance=ExtResource("2_w2txg")]
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_8diu1")]
 max_hp = 10
@@ -31,17 +49,36 @@ collision_mask = 6
 health = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBoxComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.321999, 0)
 shape = SubResource("CapsuleShape3D_at0nv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.329187, 0)
 shape = SubResource("CapsuleShape3D_ixifb")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_hps6m")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.605641, 0.795738, 0, -0.795738, 0.605641, 0, 9.31659, 6.16656)
 
 [node name="TargetArrow" type="Sprite3D" parent="."]
 transform = Transform3D(0.255, 0, 0, 0, -1.11464e-08, -0.255, 0, 0.255, -1.11464e-08, 0, 1.73429, 0)
-texture = ExtResource("2_ata2x")
+texture = ExtResource("5_8vavh")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_right = 266.0
+offset_bottom = 45.0
+value = 99.0
+texture_over = ExtResource("7_i6iiw")
+texture_progress = ExtResource("8_ln5pg")
+texture_progress_offset = Vector2(5.785, 4.515)
+
+[node name="StatusesComponent" parent="." instance=ExtResource("10_x5k6c")]
+
+[node name="AbilitiesSystem" parent="." node_paths=PackedStringArray("statuses_component") instance=ExtResource("8_jkejk")]
+abilities_panel = SubResource("Resource_n3gqt")
+statuses_component = NodePath("../StatusesComponent")
+
+[node name="CastPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.463124, 0)
+
+[node name="SmartCamera" parent="." instance=ExtResource("15_8cq7j")]
+transform = Transform3D(1, 0, 0, 0, 0.350207, 0.936672, 0, -0.936672, 0.350207, 0, 5.37305, 2.51955)
+
+[node name="PowerUpPopup" parent="." instance=ExtResource("14_ywxro")]
+all_powerups = Array[Resource("res://abilities/ability_data.gd")]([ExtResource("13_8ljov"), ExtResource("11_607q3"), ExtResource("16_e3huv"), ExtResource("14_oev8n")])

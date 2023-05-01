@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://jeqbb6g4vg4l"]
+
+[ext_resource type="Script" path="res://autoloads/power_up_slot.gd" id="1_plrk8"]
+[ext_resource type="Texture2D" uid="uid://bxe2v3atxmf66" path="res://assets/icons/poison-gas.svg" id="2_hfheh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0mtoa"]
+font_size = 26
+
+[node name="AbilitySlot" type="PanelContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -253.0
+offset_top = -42.5
+offset_right = 253.0
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_plrk8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VSplitContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HBoxContainer" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+
+[node name="AbilityIcon" type="TextureRect" parent="MarginContainer/VSplitContainer/HSplitContainer"]
+layout_mode = 2
+texture = ExtResource("2_hfheh")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Title"
+label_settings = SubResource("LabelSettings_0mtoa")
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/HSplitContainer"]
+layout_mode = 2
+text = "Choose"
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Does something great"
