@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://catjo8k0rn6ps"
-path="res://.godot/imported/Wolves.glb-0fec86a1243d2f0c2db407d5b6d0ef05.scn"
+path="res://.godot/imported/Wolves.glb-f3c43883e2c4e4a6376fcb17a50663c6.scn"
 
 [deps]
 
-source_file="res://assets/Wolfes/Wolves.glb"
-dest_files=["res://.godot/imported/Wolves.glb-0fec86a1243d2f0c2db407d5b6d0ef05.scn"]
+source_file="res://assets/Wolves/Wolves.glb"
+dest_files=["res://.godot/imported/Wolves.glb-f3c43883e2c4e4a6376fcb17a50663c6.scn"]
 
 [params]
 
