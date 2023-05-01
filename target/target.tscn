@@ -1,27 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://boj15um26lvm7"]
+[gd_scene load_steps=4 format=3 uid="uid://boj15um26lvm7"]
 
-[ext_resource type="Texture2D" uid="uid://dysdx1k2ighqf" path="res://assets/textures/Bricks_01-128x128.png" id="1_v3qfe"]
 [ext_resource type="Script" path="res://target/target.gd" id="1_yfrl2"]
-[ext_resource type="Texture2D" uid="uid://dffvaxwjw3yim" path="res://assets/textures/Roofs_12-128x128.png" id="2_g01jl"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_byui4"]
-albedo_texture = ExtResource("1_v3qfe")
-uv1_triplanar = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_mnivl"]
-material = SubResource("StandardMaterial3D_byui4")
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_yntx6"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8emd"]
-albedo_texture = ExtResource("2_g01jl")
-uv1_triplanar = true
-
-[sub_resource type="PrismMesh" id="PrismMesh_h5hys"]
-material = SubResource("StandardMaterial3D_g8emd")
-size = Vector3(2, 1, 2)
+[ext_resource type="PackedScene" uid="uid://b416oy68nmfv6" path="res://assets/House/GrannyHouse.glb" id="2_kbvgx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lq44m"]
 size = Vector3(3, 3, 3)
@@ -31,20 +11,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 5
 script = ExtResource("1_yfrl2")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-collision_layer = 4
-collision_mask = 3
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_mnivl")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00631237, -0.0118322, -0.00639105)
-shape = SubResource("BoxShape3D_yntx6")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49667, 0)
-mesh = SubResource("PrismMesh_h5hys")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_lq44m")
+
+[node name="GrannyHouse" parent="." instance=ExtResource("2_kbvgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

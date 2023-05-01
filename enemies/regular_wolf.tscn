@@ -8,9 +8,8 @@
 radius = 0.3
 height = 1.169
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_vmo71"]
-radius = 0.268
-height = 0.875
+[sub_resource type="BoxShape3D" id="BoxShape3D_ye233"]
+size = Vector3(0.2, 0.8, 0.2)
 
 [node name="Wolf" instance=ExtResource("1_50b6l")]
 
@@ -28,10 +27,6 @@ statuses = NodePath("../StatusesComponent")
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.179971, 0.300325, 0)
 shape = SubResource("CapsuleShape3D_yfg0i")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.179971, 0.300325, 0)
-shape = SubResource("CapsuleShape3D_yfg0i")
-
 [node name="StatusesComponent" parent="." index="5" node_paths=PackedStringArray("health") instance=ExtResource("3_tgnrh")]
 health = NodePath("../HealthComponent")
 
@@ -39,3 +34,5 @@ health = NodePath("../HealthComponent")
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.202028, 0.329077, 0)
 visible = false
 mesh = SubResource("CapsuleMesh_vmo71")
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.18, 0.5, 0)
+shape = SubResource("BoxShape3D_ye233")
