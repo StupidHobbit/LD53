@@ -9,12 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://ck5dpuahc4wg3" path="res://abilities/AbilitiesSystem.tscn" id="8_jkejk"]
 [ext_resource type="Texture2D" uid="uid://djb2vyas5bck2" path="res://assets/textures/BarV5_ProgressBar.png" id="8_ln5pg"]
 [ext_resource type="Script" path="res://abilities/panel/panel_data.gd" id="9_ebmrm"]
-[ext_resource type="PackedScene" uid="uid://dx5wgfcbxelfr" path="res://components/StatusesComponent.tscn" id="10_x5k6c"]
+[ext_resource type="PackedScene" path="res://components/StatusesComponent.tscn" id="10_x5k6c"]
 [ext_resource type="Resource" uid="uid://b6lsvh5egn8ur" path="res://abilities/data/speed.tres" id="11_607q3"]
 [ext_resource type="Script" path="res://abilities/panel/slot_data.gd" id="12_htim2"]
 [ext_resource type="Resource" uid="uid://c2e1liv3ewert" path="res://abilities/data/rock.tres" id="13_8ljov"]
 [ext_resource type="Resource" uid="uid://kj2wf44mewir" path="res://abilities/data/dash.tres" id="14_oev8n"]
-[ext_resource type="PackedScene" uid="uid://d2k0wks07mpho" path="res://autoloads/PowerUpPopup.tscn" id="14_ywxro"]
+[ext_resource type="PackedScene" path="res://autoloads/PowerUpPopup.tscn" id="14_ywxro"]
 [ext_resource type="PackedScene" uid="uid://edt6dwxglpvw" path="res://utils/SmartCamera.tscn" id="15_8cq7j"]
 [ext_resource type="Resource" uid="uid://c5xytn46cwadi" path="res://abilities/data/poison_cloud.tres" id="16_e3huv"]
 
@@ -22,9 +22,8 @@
 radius = 0.131
 height = 0.683
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ixifb"]
-radius = 0.127
-height = 0.722
+[sub_resource type="BoxShape3D" id="BoxShape3D_ju323"]
+size = Vector3(0.3, 0.7, 0.4)
 
 [sub_resource type="Resource" id="Resource_pule3"]
 script = ExtResource("12_htim2")
@@ -38,6 +37,7 @@ slot_datas = Array[ExtResource("12_htim2")]([SubResource("Resource_pule3")])
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0182536, 0)
 collision_mask = 6
 script = ExtResource("1_sv08u")
+dash_distance = 6.0
 
 [node name="RedHood" parent="." instance=ExtResource("2_w2txg")]
 
@@ -54,7 +54,7 @@ shape = SubResource("CapsuleShape3D_at0nv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.329187, 0)
-shape = SubResource("CapsuleShape3D_ixifb")
+shape = SubResource("BoxShape3D_ju323")
 
 [node name="TargetArrow" type="Sprite3D" parent="."]
 transform = Transform3D(0.082, 0, 0, 0, -3.58433e-09, -0.082, 0, 0.082, -3.58433e-09, 0, 0.801326, 0.0414003)

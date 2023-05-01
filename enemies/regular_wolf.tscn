@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dl6hkgcm4rjxo"]
+[gd_scene load_steps=5 format=3 uid="uid://dl6hkgcm4rjxo"]
 
 [ext_resource type="PackedScene" uid="uid://cbkbshdluwyff" path="res://enemies/Wolf.tscn" id="1_50b6l"]
 [ext_resource type="PackedScene" uid="uid://dnxhiva6et2xu" path="res://assets/Wolves/Small_wolf.glb" id="2_rao6o"]
@@ -6,6 +6,9 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yfg0i"]
 radius = 0.3
 height = 1.169
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ye233"]
+size = Vector3(0.2, 0.8, 0.2)
 
 [node name="Wolf" instance=ExtResource("1_50b6l")]
 
@@ -21,5 +24,5 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.179
 shape = SubResource("CapsuleShape3D_yfg0i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.179971, 0.300325, 0)
-shape = SubResource("CapsuleShape3D_yfg0i")
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.18, 0.5, 0)
+shape = SubResource("BoxShape3D_ye233")
