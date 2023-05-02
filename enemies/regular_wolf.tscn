@@ -17,12 +17,12 @@ height = 0.875
 
 [node name="Wolf" instance=ExtResource("1_50b6l")]
 
-[node name="model" parent="." index="0" instance=ExtResource("2_rao6o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.331967, 0.0880193, -3.74746)
-
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="DamageArea" index="1"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.179971, 0.300325, 0)
 shape = SubResource("CapsuleShape3D_yfg0i")
+
+[node name="HurtBoxComponent" parent="." index="2" node_paths=PackedStringArray("statuses_component")]
+statuses_component = NodePath("../StatusesComponent")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="HurtBoxComponent" index="0"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.179971, 0.300325, 0)
@@ -39,3 +39,6 @@ health = NodePath("../HealthComponent")
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.202028, 0.329077, 0)
 visible = false
 mesh = SubResource("CapsuleMesh_vmo71")
+
+[node name="model" parent="." index="8" instance=ExtResource("2_rao6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.355388, 0.0780038, -3.74432)

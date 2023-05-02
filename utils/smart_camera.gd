@@ -26,4 +26,4 @@ func _process(delta: float):
 	target_position.z += player.global_position.z
 	
 	var distance = (target_position - position).length()
-	position = position.move_toward(target_position, min(distance * delta / time_to_catch_up, 0.2))
+	position = position.move_toward(target_position, max(distance * delta / time_to_catch_up, 0.2))

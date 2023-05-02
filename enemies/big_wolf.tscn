@@ -27,6 +27,9 @@ damage = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.809153, 0.976621, 0)
 shape = SubResource("BoxShape3D_khqmf")
 
+[node name="HurtBoxComponent" parent="." index="2" node_paths=PackedStringArray("statuses_component")]
+statuses_component = NodePath("../StatusesComponent")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBoxComponent" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216943, 0.632658, 0)
 shape = SubResource("BoxShape3D_pt4h6")
