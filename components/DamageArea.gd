@@ -6,6 +6,8 @@ class_name DamageArea
 
 @onready var timer = $Timer
 
+var statuses: Array[Status] = []
+
 signal did_damage()
 
 func _ready():

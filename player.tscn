@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://do1w6f3nrwlaq"]
+[gd_scene load_steps=28 format=3 uid="uid://do1w6f3nrwlaq"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_sv08u"]
 [ext_resource type="PackedScene" uid="uid://dy0axrfivfknl" path="res://components/HealthComponent.tscn" id="2_8diu1"]
@@ -9,14 +9,20 @@
 [ext_resource type="PackedScene" uid="uid://ck5dpuahc4wg3" path="res://abilities/AbilitiesSystem.tscn" id="8_jkejk"]
 [ext_resource type="Texture2D" uid="uid://djb2vyas5bck2" path="res://assets/textures/BarV5_ProgressBar.png" id="8_ln5pg"]
 [ext_resource type="Script" path="res://abilities/panel/panel_data.gd" id="9_ebmrm"]
-[ext_resource type="PackedScene" path="res://components/StatusesComponent.tscn" id="10_x5k6c"]
+[ext_resource type="PackedScene" uid="uid://dx5wgfcbxelfr" path="res://components/StatusesComponent.tscn" id="10_x5k6c"]
 [ext_resource type="Resource" uid="uid://b6lsvh5egn8ur" path="res://abilities/data/speed.tres" id="11_607q3"]
 [ext_resource type="Script" path="res://abilities/panel/slot_data.gd" id="12_htim2"]
 [ext_resource type="Resource" uid="uid://c2e1liv3ewert" path="res://abilities/data/rock.tres" id="13_8ljov"]
 [ext_resource type="Resource" uid="uid://kj2wf44mewir" path="res://abilities/data/dash.tres" id="14_oev8n"]
-[ext_resource type="PackedScene" path="res://autoloads/PowerUpPopup.tscn" id="14_ywxro"]
+[ext_resource type="PackedScene" uid="uid://d2k0wks07mpho" path="res://autoloads/PowerUpPopup.tscn" id="14_ywxro"]
 [ext_resource type="PackedScene" uid="uid://edt6dwxglpvw" path="res://utils/SmartCamera.tscn" id="15_8cq7j"]
 [ext_resource type="Resource" uid="uid://c5xytn46cwadi" path="res://abilities/data/poison_cloud.tres" id="16_e3huv"]
+[ext_resource type="Resource" uid="uid://ceqkvfwnusasf" path="res://abilities/data/fireball.tres" id="18_3u55j"]
+[ext_resource type="Resource" uid="uid://bh66eo8a4tv55" path="res://abilities/data/icicles.tres" id="19_f28v4"]
+[ext_resource type="Resource" uid="uid://fotv3gbump00" path="res://abilities/data/regeneration.tres" id="20_0d1xq"]
+[ext_resource type="Resource" uid="uid://bpdeb6rnnpy7f" path="res://abilities/data/spikes.tres" id="21_3tbf2"]
+[ext_resource type="AudioStream" uid="uid://khf67ic7n8u6" path="res://Audio/Red_bitten.wav" id="22_xikti"]
+[ext_resource type="Resource" uid="uid://dhetwqa72hgmn" path="res://abilities/data/vitality.tres" id="22_yggnb"]
 
 [sub_resource type="Resource" id="Resource_i6hlp"]
 script = ExtResource("12_htim2")
@@ -31,14 +37,14 @@ radius = 0.131
 height = 0.683
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ju323"]
-size = Vector3(0.3, 0.7, 0.4)
+size = Vector3(0.3, 0.35, 0.4)
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0182536, 0)
 collision_mask = 7
 script = ExtResource("1_sv08u")
-abilities_panel = SubResource("Resource_5ti5g")
 dash_distance = 6.0
+abilities_panel = SubResource("Resource_5ti5g")
 
 [node name="RedHood" parent="." instance=ExtResource("2_w2txg")]
 
@@ -46,7 +52,7 @@ dash_distance = 6.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.463124, 0.177435)
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_8diu1")]
-max_hp = 10.0
+max_hp = 20.0
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health") instance=ExtResource("3_3w0vw")]
 collision_mask = 6
@@ -57,7 +63,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.321999, 0)
 shape = SubResource("CapsuleShape3D_at0nv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.329187, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.389748, 0)
 shape = SubResource("BoxShape3D_ju323")
 
 [node name="TargetArrow" type="Sprite3D" parent="."]
@@ -83,4 +89,7 @@ statuses_component = NodePath("../StatusesComponent")
 transform = Transform3D(1, 0, 0, 0, 0.264462, 0.964396, 0, -0.964396, 0.264462, 0, 3.26208, 0.913267)
 
 [node name="PowerUpPopup" parent="." instance=ExtResource("14_ywxro")]
-all_powerups = Array[Resource("res://abilities/ability_data.gd")]([ExtResource("13_8ljov"), ExtResource("11_607q3"), ExtResource("16_e3huv"), ExtResource("14_oev8n")])
+all_powerups = Array[Resource("res://abilities/ability_data.gd")]([ExtResource("13_8ljov"), ExtResource("11_607q3"), ExtResource("16_e3huv"), ExtResource("14_oev8n"), ExtResource("18_3u55j"), ExtResource("19_f28v4"), ExtResource("20_0d1xq"), ExtResource("21_3tbf2"), ExtResource("22_yggnb")])
+
+[node name="BittenSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("22_xikti")

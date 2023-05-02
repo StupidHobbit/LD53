@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=7 format=3 uid="uid://dlee3fqrkajxq"]
+
+[ext_resource type="Script" path="res://abilities/projectile_data.gd" id="1_bhof2"]
+[ext_resource type="Script" path="res://abilities/ability_data.gd" id="1_uptam"]
+[ext_resource type="Script" path="res://statuses/status.gd" id="3_q8b3f"]
+[ext_resource type="Texture2D" uid="uid://b452kyu304ytp" path="res://assets/icons/burning-tree.svg" id="4_m1ndh"]
+
+[sub_resource type="Resource" id="Resource_am38s"]
+script = ExtResource("1_bhof2")
+damage = 5.0
+speed = 0.0
+amount = 1
+
+[sub_resource type="Resource" id="Resource_0rbj8"]
+script = ExtResource("3_q8b3f")
+type = 1
+value = 2.0
+
+[resource]
+script = ExtResource("1_uptam")
+slug = "ray"
+name = "Volcano ray"
+description = "Ray of volcano energy destroying everything in small area in front of the Red"
+texture = ExtResource("4_m1ndh")
+projectile = SubResource("Resource_am38s")
+cooldown = 8.0
+range = 10.0
+autocast = true
+passive = false
+statuses = Array[ExtResource("3_q8b3f")]([SubResource("Resource_0rbj8")])

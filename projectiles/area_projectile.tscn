@@ -8,4 +8,8 @@
 script = ExtResource("2_m2ptc")
 
 [node name="DamageArea" type="Area3D" parent="." index="0"]
+collision_layer = 9
+collision_mask = 2
 script = ExtResource("3_oeeeq")
+
+[node name="Timer" type="Timer" parent="DamageArea" index="0"]

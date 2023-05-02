@@ -9,6 +9,11 @@ var abilities_panel: AbilityPanelData = AbilityPanelData.new()
 		
 
 @onready var ability_panel = $AbilityPanel
+@onready var icicles_audio = $IciclesAudio
+@onready var fire_audio = $FireAudio
+@onready var rock_audio = $RockAudio
+@onready var dash_audio = $DashAudio
+@onready var posion_audio = $PosionAudio
 
 var abilities_index: Dictionary
 var enemies_query: EnemiesQuery = EnemiesQuery.new()
@@ -20,6 +25,7 @@ var poison_cloud_projectile = preload("res://projectiles/poison_cloud_projectile
 var fire_projectile = preload("res://projectiles/fire_projectile.tscn")
 var ice_projectile = preload("res://projectiles/ice_projectile.tscn")
 var spike_projectile = preload("res://projectiles/spike_projectile.tscn")
+var ray_projectile = preload("res://projectiles/ray_projectile.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -83,6 +89,7 @@ func _active_ability_implementation(ability_data: AbilityData) -> bool:
 	match ability_data.slug:
 		"dash":
 			player.dash()
+			dash_audio.play()
 			return true
 		_:
 			push_error("Unknown ability", ability_data.slug)
@@ -95,17 +102,28 @@ func _autocast_implementation(ability_data: AbilityData) -> bool:
 	match ability_data.slug:
 		"rock":
 			var p = make_projectile(rock_projectile, ability_data, enemies_query.get_closest_enemy().position)
+			rock_audio.play()
 			return true
 		"poison_cloud":
 			var p = make_projectile(poison_cloud_projectile, ability_data, enemies_query.get_closest_enemy().position)
+			posion_audio.play()
 			return true
 		"fireball":
 			var p = make_projectile(fire_projectile, ability_data, enemies_query.get_closest_enemy().position)
+			fire_audio.play()
+			return true
+		"ray":
+			var p = make_projectile(ray_projectile, ability_data, Vector3.ZERO)
+			p.reparent(player.cast_point)
+			p.rotation = player.red_hood.rotation
+			p.find_child("")
+			fire_audio.play()
 			return true
 		"icicles":
 			for i in range(ability_data.projectile.amount):
 				var angle = randf_range(0, 2 * PI)
 				var p = make_projectile(ice_projectile, ability_data, player.position + Vector3(cos(angle), 0, sin(angle)))
+			icicles_audio.play()
 			return true
 		"spikes":
 			for i in range(ability_data.projectile.amount):

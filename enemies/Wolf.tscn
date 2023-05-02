@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbkbshdluwyff"]
+[gd_scene load_steps=7 format=3 uid="uid://cbkbshdluwyff"]
 
 [ext_resource type="PackedScene" uid="uid://be1jdpsdpry73" path="res://components/DamageArea.tscn" id="1_djlqp"]
 [ext_resource type="Script" path="res://enemies/Wolf.gd" id="1_pcv3k"]
 [ext_resource type="PackedScene" uid="uid://dy0axrfivfknl" path="res://components/HealthComponent.tscn" id="2_g08fv"]
 [ext_resource type="PackedScene" uid="uid://xo3w3js6jcj5" path="res://components/HurtBoxComponent.tscn" id="3_erby0"]
+[ext_resource type="AudioStream" uid="uid://bs515weaw2h8s" path="res://Audio/Wolf_houl.wav" id="5_iwsec"]
+[ext_resource type="AudioStream" uid="uid://c0oyofnhan842" path="res://Audio/Wolf_bite.wav" id="6_o5cw1"]
 
 [node name="Wolf" type="CharacterBody3D" groups=["enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.560475, 0)
@@ -21,3 +23,9 @@ max_hp = 10.0
 collision_layer = 2
 collision_mask = 8
 health = NodePath("../HealthComponent")
+
+[node name="DeathAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_iwsec")
+
+[node name="BiteAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_o5cw1")

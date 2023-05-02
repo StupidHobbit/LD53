@@ -1,10 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmvys8ch5ny7w"]
+[gd_scene load_steps=8 format=3 uid="uid://cfnlqj0l3orla"]
 
 [ext_resource type="MeshLibrary" uid="uid://cvlkxc0p5d3aw" path="res://assets/Scenes/tileset.meshlib" id="1_04jsp"]
-[ext_resource type="PackedScene" uid="uid://do1w6f3nrwlaq" path="res://player.tscn" id="3_frjnv"]
-[ext_resource type="PackedScene" uid="uid://dsaghhxjaspsv" path="res://assets/Scenes/target.tscn" id="3_r6dxk"]
+[ext_resource type="PackedScene" uid="uid://dsaghhxjaspsv" path="res://target/totem_target.tscn" id="3_r6dxk"]
+[ext_resource type="PackedScene" uid="uid://bkmobttgjsu2f" path="res://spawners/EnemySpawner.tscn" id="4_lpvpg"]
+[ext_resource type="PackedScene" uid="uid://dl6hkgcm4rjxo" path="res://enemies/regular_wolf.tscn" id="5_ejdq5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8oiwk"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_60fs8"]
+sky_material = SubResource("ProceduralSkyMaterial_8oiwk")
+
+[sub_resource type="Environment" id="Environment_7qeqo"]
+background_mode = 2
+sky = SubResource("Sky_60fs8")
+tonemap_mode = 2
 
 [node name="level 2" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7qeqo")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.91496, 0.109877, -0.388298, 0, 0.962218, 0.27228, 0.403545, 0.249125, -0.880391, 0, 0, 0)
@@ -20,9 +36,10 @@ data = {
 }
 
 [node name="target" parent="." instance=ExtResource("3_r6dxk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3, 1, 79)
+transform = Transform3D(-0.999657, 0, 0.0261943, 0, 1, 0, -0.0261943, 0, -0.999657, 3.3, 1, 79)
 
-[node name="Player" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_frjnv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-collision_mask = 7
-target = NodePath("../target")
+[node name="EnemySpawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_lpvpg")]
+spawn_range = 7.0
+enemy_scene = ExtResource("5_ejdq5")
+player = NodePath("")
+cooldown = 4.0

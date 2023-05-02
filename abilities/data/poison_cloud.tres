@@ -8,12 +8,13 @@
 script = ExtResource("1_msbi4")
 damage = 3
 speed = 1.0
+amount = 1
 
 [resource]
 script = ExtResource("1_js2yd")
 slug = "poison_cloud"
-name = "Posion cloud"
-description = "Red cast a cloud of toxic gas, that does a serios ammount of damage on the area with a big cooldown."
+name = "Poison cloud"
+description = "Red casts a cloud of toxic gas, that does a serios amount of damage in the area with a big cooldown"
 texture = ExtResource("2_yex7j")
 projectile = SubResource("Resource_mmf75")
 cooldown = 10.0

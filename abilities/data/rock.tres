@@ -8,6 +8,7 @@
 script = ExtResource("1_o24er")
 damage = 3
 speed = 25.0
+amount = 1
 
 [resource]
 script = ExtResource("1_yov3n")

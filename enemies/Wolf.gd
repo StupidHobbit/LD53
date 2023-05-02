@@ -7,6 +7,8 @@ extends CharacterBody3D
 @onready var damage_area = $DamageArea
 @onready var status_mesh = $StatusMesh
 @onready var statuses_component = $StatusesComponent
+@onready var death_audio = $DeathAudio
+@onready var bite_audio = $BiteAudio
 
 @onready var fire_material = preload("res://projectiles/fire_material.tres")
 @onready var ice_material = preload("res://projectiles/ice_material.tres")
@@ -43,6 +45,7 @@ func _on_animation_finished(name: String):
 func _on_damage():
 	is_biting = true
 	animation_player.play("W_Bite")
+	bite_audio.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -68,6 +71,7 @@ func _on_health_depleted():
 	is_dying = true
 	damage_area.queue_free()
 	animation_player.play("W_Dead")
+	death_audio.play()
 
 func _on_took_damage(damage: int):
 	print(damage)

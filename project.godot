@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 LevelsManager="*res://autoloads/LevelsManager.tscn"
 DeathPopup="*res://autoloads/DeathPopup.tscn"
 
+[display]
+
+window/size/mode=3
+
 [input]
 
 left={

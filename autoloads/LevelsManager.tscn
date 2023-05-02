@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://1s3v4y1d8jfv"]
+[gd_scene load_steps=3 format=3 uid="uid://1s3v4y1d8jfv"]
 
 [ext_resource type="Script" path="res://autoloads/LevelsManager.gd" id="1_jms0v"]
+[ext_resource type="PackedScene" uid="uid://jbx38uhpnqko" path="res://autoloads/WinPopup.tscn" id="2_qeqhm"]
 
 [node name="LevelsManager" type="Node"]
 process_mode = 3
 script = ExtResource("1_jms0v")
+
+[node name="WinPopup" parent="." instance=ExtResource("2_qeqhm")]

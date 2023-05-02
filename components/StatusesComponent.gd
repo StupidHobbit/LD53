@@ -7,6 +7,9 @@ signal status_added(status: Status)
 @export var statuses: Array[Status]
 
 func add_status(status: Status):
+	if status.type == Status.StatusType.VITALITY:
+		health.add_vitality(status.value)
+		
 	status_added.emit(status)
 	statuses.append(status)
 
@@ -34,4 +37,5 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
 	if health != null:
-		health.take_damage(get_health_diff() * delta)
+		var health_diff = get_health_diff()
+		health.take_damage(health_diff * delta)

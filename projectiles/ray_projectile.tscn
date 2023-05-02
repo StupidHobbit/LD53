@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dm5ua22wwjwaj"]
+
+[ext_resource type="PackedScene" uid="uid://k7h7nf5t2058" path="res://projectiles/area_projectile.tscn" id="1_j8atv"]
+[ext_resource type="Material" uid="uid://cqf0o8ic06qo5" path="res://projectiles/fire_material.tres" id="2_v7t0r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oiwxn"]
+radius = 0.245
+height = 9.856
+
+[sub_resource type="SphereMesh" id="SphereMesh_32npi"]
+material = ExtResource("2_v7t0r")
+radius = 0.2
+height = 11.246
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ywe3w"]
+albedo_color = Color(0.94902, 0.164706, 0.156863, 1)
+metallic = 0.61
+emission_enabled = true
+emission = Color(0.917647, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bcmor"]
+material = SubResource("StandardMaterial3D_ywe3w")
+radius = 0.1
+height = 9.611
+
+[node name="area_projectile" instance=ExtResource("1_j8atv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0685734, 0)
+max_lifetime = 3.0
+
+[node name="DamageArea" parent="." index="0"]
+transform = Transform3D(-0.000721689, 0.019776, 0.999804, 0.0835505, 0.99631, -0.0196466, -0.996503, 0.08352, -0.00237131, 4.76347, -0.0892065, -0.0399119)
+damage = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_oiwxn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(-0.000721689, 0.999804, -0.0197761, 0.0835505, -0.0196467, -0.99631, -0.996503, -0.00237132, -0.08352, 4.865, -0.150257, 0.000472564)
+mesh = SubResource("SphereMesh_32npi")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(0.0197761, 0.999804, -0.000721734, 0.99631, -0.0196467, 0.0835506, 0.08352, -0.00237137, -0.996503, 4.865, -0.150257, 0.000472564)
+mesh = SubResource("CapsuleMesh_bcmor")

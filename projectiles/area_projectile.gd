@@ -4,7 +4,9 @@ extends Projectile
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if data == null:
+		return
 	var damage = data.damage
 	data = ProjectileData.new()
 	damage_area.damage = damage
-	data.damage = 0
+	$DamageArea.statuses = statuses

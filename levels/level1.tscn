@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbke0pdrvpasi"]
+[gd_scene load_steps=10 format=3 uid="uid://uycqe5t6q31e"]
 
-[ext_resource type="PackedScene" uid="uid://do1w6f3nrwlaq" path="res://player.tscn" id="2_8uyy8"]
 [ext_resource type="MeshLibrary" uid="uid://cvlkxc0p5d3aw" path="res://assets/Scenes/tileset.meshlib" id="3_1km13"]
-[ext_resource type="PackedScene" uid="uid://dsaghhxjaspsv" path="res://assets/Scenes/target.tscn" id="3_llxc0"]
+[ext_resource type="PackedScene" uid="uid://dsaghhxjaspsv" path="res://target/totem_target.tscn" id="3_llxc0"]
+[ext_resource type="PackedScene" uid="uid://bkmobttgjsu2f" path="res://spawners/EnemySpawner.tscn" id="3_sv6od"]
+[ext_resource type="PackedScene" uid="uid://dl6hkgcm4rjxo" path="res://enemies/regular_wolf.tscn" id="4_uqnya"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dqcma"]
 sky_top_color = Color(0.0901961, 0.196078, 0.419608, 1)
@@ -44,11 +45,6 @@ shape = SubResource("BoxShape3D_yjfx4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0188808, 0.0754943, 0)
 mesh = SubResource("BoxMesh_lfw5q")
 
-[node name="Player" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_8uyy8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-collision_mask = 7
-target = NodePath("../target")
-
 [node name="GridMap" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0, -75)
 mesh_library = ExtResource("3_1km13")
@@ -61,3 +57,11 @@ data = {
 
 [node name="target" parent="." instance=ExtResource("3_llxc0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 1, -72)
+
+[node name="EnemySpawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_sv6od")]
+enemy_scene = ExtResource("4_uqnya")
+player = NodePath("")
+cooldown = 5.0
+max_amount = 5
+
+[node name="Marker3D" type="Marker3D" parent="."]

@@ -3,14 +3,23 @@ extends Node
 @onready var player_scene = preload("res://player.tscn")
 @onready var spawner_scene = preload("res://spawners/EnemySpawner.tscn")
 @onready var target_scene = preload("res://target/target.tscn")
-@onready var empty_level_scene = preload("res://levels/empty_level.tscn")
 @onready var wolf_scene = preload("res://enemies/regular_wolf.tscn")
+
+@onready var levels = [
+	preload("res://levels/level1.tscn"),
+	preload("res://levels/level_2.tscn"),
+	preload("res://levels/level_3.tscn"),
+	preload("res://levels/level_4.tscn"),
+	preload("res://levels/level_5.tscn"),
+]
+
 
 var player: Player
 var current_level: Node3D
 var main: Node
 var current_level_number: int = 1
 var game_is_active: bool = false
+var next_level_scene: PackedScene
 
 func _ready():
 	pass
@@ -32,6 +41,11 @@ func restart_game():
 	current_level_number = 1
 	player.init_abilities()
 	start_game()
+	
+func finish_game():
+	pause_game()
+	$WinPopup.show()
+	$WinPopup.popup_centered()
 
 func finish_level():
 	var old_level = current_level
@@ -51,26 +65,21 @@ func continue_game():
 	
 	
 func _create_level():
-	var spawner: EnemySpawner = spawner_scene.instantiate()
-	spawner.max_amount = current_level_number * 3
-	spawner.cooldown = 5 / sqrt(current_level_number)
-	spawner.spawn_range = 20
-	spawner.player = player
-	spawner.enemy_scene = wolf_scene
-	
-	var target = target_scene.instantiate()
-	var target_distance = 30 * sqrt(current_level_number)
-	var target_angle = randf_range(0, 2 * PI)
-	target.position = Vector3(target_distance * cos(target_angle), 0, target_distance * sin(target_angle))
-	player.target = target
 	player.position = Vector3.ZERO
 	
-	current_level = empty_level_scene.instantiate()
-	current_level.add_child(spawner)
-	current_level.add_child(target)
+	current_level = _get_current_level_scene().instantiate()
 	
 	main.add_child(current_level)
 	
+	for o in current_level.get_children():
+		if o is EnemySpawner:
+			o.player = player
+		if o is Target:
+			player.target = o
+		
 	current_level_number += 1
 	
 	return current_level
+	
+func _get_current_level_scene() -> PackedScene:
+	return levels[current_level_number - 1]

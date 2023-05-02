@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://ck5dpuahc4wg3"]
+[gd_scene load_steps=8 format=3 uid="uid://ck5dpuahc4wg3"]
 
 [ext_resource type="Script" path="res://abilities/AbilitiesSystem.gd" id="1_sskw7"]
 [ext_resource type="PackedScene" uid="uid://df3o4x1dkx6lh" path="res://abilities/ability_panel.tscn" id="2_2yoqh"]
+[ext_resource type="AudioStream" uid="uid://bhar0tq6irg1b" path="res://Audio/Cold.wav" id="3_0l0rx"]
+[ext_resource type="AudioStream" uid="uid://3evdgolxuaav" path="res://Audio/Fireball.wav" id="4_xs7j3"]
+[ext_resource type="AudioStream" uid="uid://s7yajkqrkhko" path="res://Audio/Poison_cloud.wav" id="5_l4b33"]
+[ext_resource type="AudioStream" uid="uid://km3l1eoni8i" path="res://Audio/Rock.wav" id="6_ru3f2"]
+[ext_resource type="AudioStream" uid="uid://nwlri60vy0by" path="res://Audio/Whoosh.wav" id="7_r4p4h"]
 
 [node name="AbilitiesSystem" type="Node"]
 script = ExtResource("1_sskw7")
@@ -11,3 +16,18 @@ offset_left = 3.0
 offset_top = 34.0
 offset_right = 43.0
 offset_bottom = 74.0
+
+[node name="IciclesAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_0l0rx")
+
+[node name="FireAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_xs7j3")
+
+[node name="PosionAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_l4b33")
+
+[node name="RockAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_ru3f2")
+
+[node name="DashAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_r4p4h")

@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://boj15um26lvm7"]
+[gd_scene load_steps=3 format=3 uid="uid://boj15um26lvm7"]
 
 [ext_resource type="Script" path="res://target/target.gd" id="1_yfrl2"]
-[ext_resource type="PackedScene" uid="uid://b416oy68nmfv6" path="res://assets/House/GrannyHouse.glb" id="2_kbvgx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lq44m"]
 size = Vector3(3, 3, 3)
@@ -13,6 +12,3 @@ script = ExtResource("1_yfrl2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_lq44m")
-
-[node name="GrannyHouse" parent="." instance=ExtResource("2_kbvgx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

@@ -17,6 +17,7 @@ class_name Player
 @onready var cast_point = $RedHood/CastPoint
 @onready var power_up_popup: PowerUpPopup = $PowerUpPopup
 @onready var animation_player = $RedHood/AnimationPlayer
+@onready var bitten_sound = $BittenSound
 
 var has_dash_boost: bool = false
 var last_input: Vector2
@@ -25,6 +26,7 @@ var target_arrow_original_position: Vector3
 func _ready():
 	health_component.health_depleted.connect(_on_health_depleted)
 	health_component.took_damage.connect(_on_damage)
+	health_component.max_hp_changed.connect(_on_max_hp_change)
 	hurt_box_component.area_entered.connect(_on_hurtbox_area_entered)
 	health_bar.max_value = health_component.max_hp
 	health_bar.value = health_component.max_hp
@@ -67,11 +69,20 @@ func update_target():
 	target_arrow.rotation.z = angle
 	#target_arrow.position = target_arrow_original_position + position
 
-func _on_damage(damage: int):
+func _on_damage(damage: float):
+	health_bar.value = health_component.current_hp
+	if damage >= 1:
+		bitten_sound.play()
+
+func _on_max_hp_change():
+	health_bar.max_value = health_component.max_hp
 	health_bar.value = health_component.current_hp
 
 func _on_hurtbox_area_entered(area: Area3D):
 	if area is Target:
+		if target.is_final:
+			LevelsManager.finish_game()
+			return
 		power_up_popup.choose_power_up()
 		LevelsManager.call_deferred("finish_level")
 

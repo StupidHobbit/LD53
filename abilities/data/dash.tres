@@ -7,7 +7,7 @@
 script = ExtResource("1_asb0k")
 slug = "dash"
 name = "Dash"
-description = "Red make a fast move forward. Activate  with shift.
+description = "Red makes a fast move forward. Activates with \"Shift\" or \"E\"
 "
 texture = ExtResource("2_6miem")
 cooldown = 2.0

@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://jbx38uhpnqko"]
+
+[ext_resource type="Script" path="res://autoloads/WinPopup.gd" id="1_n1xd2"]
+
+[node name="WinPopup" type="PopupPanel"]
+process_mode = 3
+size = Vector2i(562, 204)
+visible = true
+script = ExtResource("1_n1xd2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 558.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="GameName" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Congratulations, you have won!"
+horizontal_alignment = 1
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"

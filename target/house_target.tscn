@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn3dr3f3xu4hd"]
+
+[ext_resource type="PackedScene" uid="uid://boj15um26lvm7" path="res://target/target.tscn" id="1_14lay"]
+[ext_resource type="PackedScene" uid="uid://b416oy68nmfv6" path="res://assets/House/GrannyHouse.glb" id="2_x8tyf"]
+
+[node name="target" instance=ExtResource("1_14lay")]
+is_final = true
+
+[node name="GrannyHouse" parent="." index="1" instance=ExtResource("2_x8tyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
