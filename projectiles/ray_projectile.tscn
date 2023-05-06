@@ -28,17 +28,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0685734, 0)
 max_lifetime = 3.0
 
 [node name="DamageArea" parent="." index="0"]
-transform = Transform3D(-0.000721689, 0.019776, 0.999804, 0.0835505, 0.99631, -0.0196466, -0.996503, 0.08352, -0.00237131, 4.76347, -0.0892065, -0.0399119)
+transform = Transform3D(-0.996503, 0.0835462, -0.00104513, 0.0835505, 0.99631, -0.0196466, -0.000600103, -0.0196652, -0.999806, -0.000226066, 0.469326, 5.46003)
 damage = 5
+cooldown = 0.2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea" index="0"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1.113, 3.23926e-10, -1.41592e-17, 0, -4.86508e-08, -1.113, -3.23926e-10, 1.113, -4.86508e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_oiwxn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
-transform = Transform3D(-0.000721689, 0.999804, -0.0197761, 0.0835505, -0.0196467, -0.99631, -0.996503, -0.00237132, -0.08352, 4.865, -0.150257, 0.000472564)
+transform = Transform3D(-0.996503, -0.00104514, -0.0835462, 0.0835505, -0.0196467, -0.99631, -0.000600103, -0.999806, 0.0196653, 0.0402929, 0.408276, 5.35855)
 mesh = SubResource("SphereMesh_32npi")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="2"]
-transform = Transform3D(0.0197761, 0.999804, -0.000721734, 0.99631, -0.0196467, 0.0835506, 0.08352, -0.00237137, -0.996503, 4.865, -0.150257, 0.000472564)
+transform = Transform3D(0.0835462, -0.0010452, -0.996503, 0.99631, -0.0196467, 0.0835506, -0.0196653, -0.999806, -0.000600066, 0.0402929, 0.408276, 5.35855)
 mesh = SubResource("CapsuleMesh_bcmor")

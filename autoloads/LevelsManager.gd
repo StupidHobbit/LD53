@@ -55,7 +55,7 @@ func finish_level():
 	
 	
 func pause_game():
-	current_level.get_tree().paused = true
+	current_level.getd_tree().paused = true
 	game_is_active = false
 	
 	

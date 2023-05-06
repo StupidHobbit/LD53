@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://do1w6f3nrwlaq"]
+[gd_scene load_steps=29 format=3 uid="uid://do1w6f3nrwlaq"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_sv08u"]
 [ext_resource type="PackedScene" uid="uid://dy0axrfivfknl" path="res://components/HealthComponent.tscn" id="2_8diu1"]
 [ext_resource type="PackedScene" uid="uid://b48y3uaqxeea6" path="res://assets/MainCharacter/RedHood.glb" id="2_w2txg"]
 [ext_resource type="PackedScene" uid="uid://xo3w3js6jcj5" path="res://components/HurtBoxComponent.tscn" id="3_3w0vw"]
+[ext_resource type="Resource" uid="uid://dlee3fqrkajxq" path="res://abilities/data/ray.tres" id="3_5r7ue"]
 [ext_resource type="Texture2D" uid="uid://bwrm6msevi06m" path="res://assets/icons/thrust.svg" id="5_8vavh"]
 [ext_resource type="Texture2D" uid="uid://cbu1dkbdcoohe" path="res://assets/textures/BarV5_ProgressBarBorder.png" id="7_i6iiw"]
 [ext_resource type="PackedScene" uid="uid://ck5dpuahc4wg3" path="res://abilities/AbilitiesSystem.tscn" id="8_jkejk"]
@@ -89,7 +90,7 @@ statuses_component = NodePath("../StatusesComponent")
 transform = Transform3D(1, 0, 0, 0, 0.264462, 0.964396, 0, -0.964396, 0.264462, 0, 3.26208, 0.913267)
 
 [node name="PowerUpPopup" parent="." instance=ExtResource("14_ywxro")]
-all_powerups = Array[Resource("res://abilities/ability_data.gd")]([ExtResource("13_8ljov"), ExtResource("11_607q3"), ExtResource("16_e3huv"), ExtResource("14_oev8n"), ExtResource("18_3u55j"), ExtResource("19_f28v4"), ExtResource("20_0d1xq"), ExtResource("21_3tbf2"), ExtResource("22_yggnb")])
+all_powerups = Array[Resource("res://abilities/ability_data.gd")]([ExtResource("13_8ljov"), ExtResource("11_607q3"), ExtResource("16_e3huv"), ExtResource("14_oev8n"), ExtResource("18_3u55j"), ExtResource("19_f28v4"), ExtResource("20_0d1xq"), ExtResource("21_3tbf2"), ExtResource("22_yggnb"), ExtResource("3_5r7ue")])
 
 [node name="BittenSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("22_xikti")

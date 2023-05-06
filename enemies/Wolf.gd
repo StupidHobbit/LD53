@@ -74,4 +74,5 @@ func _on_health_depleted():
 	death_audio.play()
 
 func _on_took_damage(damage: int):
-	print(damage)
+	if damage > 0.1:
+		print(damage)

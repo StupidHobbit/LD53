@@ -113,10 +113,10 @@ func _autocast_implementation(ability_data: AbilityData) -> bool:
 			fire_audio.play()
 			return true
 		"ray":
-			var p = make_projectile(ray_projectile, ability_data, Vector3.ZERO)
-			p.reparent(player.cast_point)
-			p.rotation = player.red_hood.rotation
-			p.find_child("")
+			var p = make_projectile(ray_projectile, ability_data, Vector3.ZERO, false)
+			player.cast_point.add_child(p)
+			p.position = Vector3.ZERO
+			#p.rotation = player.red_hood.rotation
 			fire_audio.play()
 			return true
 		"icicles":
@@ -138,10 +138,11 @@ func _autocast_implementation(ability_data: AbilityData) -> bool:
 			push_error("Unknown ability ", ability_data.slug)
 	return false
 	
-func make_projectile(projectile_scene: PackedScene, ability: AbilityData, target_position: Vector3) -> Projectile:
+func make_projectile(projectile_scene: PackedScene, ability: AbilityData, target_position: Vector3, add_child = true) -> Projectile:
 	var projectile = projectile_scene.instantiate()
 	projectile.data = ability.projectile
-	world.add_child(projectile)
+	if add_child:
+		world.add_child(projectile)
 	projectile.statuses = ability.statuses
 	projectile.global_position = player.cast_point.global_position
 	projectile.velocity = Vector3(target_position.x - player.position.x, 0, target_position.z - player.position.z).normalized() * ability.projectile.speed
